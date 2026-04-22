@@ -1,110 +1,60 @@
-// ── IMAGE DATA (base64 encoded dashboard screenshots) ──
-// These are injected by the build process — see README note below.
-// To use your own images, replace the strings in the imgData array with
-// your own base64-encoded PNG strings, or change the src attributes in
-// index.html to relative file paths (e.g. "images/dashboard1.png").
-
-const imgData = [
-  window.IMG_CAPTURE4 || '',
-  window.IMG_CAPTURE5 || '',
-  window.IMG_CAPTURE6 || ''
-];
-
-// ── INJECT GALLERY IMAGES ──
-function loadGalleryImages() {
-  imgData.forEach((b64, i) => {
-    const el = document.getElementById('gi' + i);
-    if (el && b64) {
-      el.src = 'data:image/png;base64,' + b64;
-    }
-  });
-}
-
-// ── LIGHTBOX ──
-let currentLb = 0;
-
-function openLb(i) {
-  currentLb = i;
-  const lb = document.getElementById('lightbox');
-  const img = document.getElementById('lb-img');
-  img.src = imgData[i] ? 'data:image/png;base64,' + imgData[i] : '';
-  lb.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeLb() {
-  document.getElementById('lightbox').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function lbBgClose(e) {
-  if (e.target === document.getElementById('lightbox')) closeLb();
-}
-
-function navLb(dir) {
-  currentLb = (currentLb + dir + imgData.length) % imgData.length;
-  const img = document.getElementById('lb-img');
-  img.src = imgData[currentLb] ? 'data:image/png;base64,' + imgData[currentLb] : '';
-}
-
-// Keyboard navigation
-document.addEventListener('keydown', (e) => {
-  const lb = document.getElementById('lightbox');
-  if (!lb.classList.contains('open')) return;
-  if (e.key === 'Escape') closeLb();
-  if (e.key === 'ArrowRight') navLb(1);
-  if (e.key === 'ArrowLeft') navLb(-1);
-});
-
-// ── MOBILE NAV ──
-function toggleMenu() {
-  document.getElementById('navLinks').classList.toggle('open');
-}
-
-function closeMenu() {
-  document.getElementById('navLinks').classList.remove('open');
-}
-
-// Close menu when clicking outside
-document.addEventListener('click', (e) => {
-  const nav = document.getElementById('navLinks');
-  const hamburger = document.getElementById('hamburger');
-  if (nav.classList.contains('open') && !nav.contains(e.target) && !hamburger.contains(e.target)) {
-    closeMenu();
-  }
-});
-
-// ── SCROLL REVEAL ──
-function initScrollReveal() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-}
-
-// ── INIT ──
+// script.js
+// Lightbox functionality for gallery images
 document.addEventListener('DOMContentLoaded', () => {
-  loadGalleryImages();
-  initScrollReveal();
+    const galleryCards = document.querySelectorAll('.gallery-card');
+    const modal = document.getElementById('lightboxModal');
+    const lightboxContent = document.getElementById('lightboxContent');
+    const closeBtn = document.querySelector('.close-lightbox');
+
+    function openLightbox(imgElement) {
+        lightboxContent.innerHTML = '';
+        const clonedImg = imgElement.cloneNode(true);
+        clonedImg.style.maxWidth = '100%';
+        clonedImg.style.maxHeight = '70vh';
+        clonedImg.style.borderRadius = '12px';
+        lightboxContent.appendChild(clonedImg);
+        modal.classList.add('active');
+    }
+
+    galleryCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const img = card.querySelector('.gallery-img img');
+            if (img && img.src && !img.src.includes('data:image/svg')) {
+                openLightbox(img);
+            } else if (img) {
+                // fallback if image is broken or missing
+                const placeholder = document.createElement('div');
+                placeholder.style.color = '#64FFDA';
+                placeholder.style.padding = '20px';
+                placeholder.style.textAlign = 'center';
+                placeholder.innerText = '⚠️ Preview not available. Please ensure the image file exists in the same folder.';
+                lightboxContent.innerHTML = '';
+                lightboxContent.appendChild(placeholder);
+                modal.classList.add('active');
+            }
+        });
+    });
+
+    // Close lightbox
+    closeBtn.addEventListener('click', () => {
+        modal.classList.remove('active');
+    });
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('active');
+    });
+
+    // Smooth scroll for all internal anchor links
+    const allLinks = document.querySelectorAll('a[href^="#"]');
+    allLinks.forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href && href !== '#') {
+                e.preventDefault();
+                const targetElement = document.querySelector(href);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    });
 });
-
-// ── PROFILE PHOTO ──
-// If you have a profile photo, set window.PROFILE_PHOTO to its base64 string,
-// or replace the <img id="hero-photo"> src with a relative image path like "photo.jpg"
-(function initPhoto() {
-  const img = document.getElementById('hero-photo');
-  const placeholder = document.getElementById('hero-placeholder');
-  if (!img || !placeholder) return;
-
-  if (window.PROFILE_PHOTO) {
-    img.src = 'data:image/jpeg;base64,' + window.PROFILE_PHOTO;
-    img.classList.add('loaded');
-    placeholder.classList.add('hidden');
-  }
-  // If no photo is set, the initials placeholder stays visible
-})();
