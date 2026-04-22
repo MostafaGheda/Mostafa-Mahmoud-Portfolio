@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Mostafa Mahmoud | BI Developer & Data Analyst</title>
+    <title>Mostafa Gheda | BI Developer & Data Analyst</title>
     <!-- Google Fonts + Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -22,7 +22,6 @@
             scroll-behavior: smooth;
         }
 
-        /* custom scroll */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -34,7 +33,7 @@
             border-radius: 6px;
         }
 
-        /* glassmorphism & cards */
+        /* glassmorphism */
         .glass-card, .project-card, .exp-card, .cert-card, .skill-badge, .contact-card {
             background: rgba(17, 34, 64, 0.75);
             backdrop-filter: blur(8px);
@@ -55,7 +54,7 @@
             padding: 0 24px;
         }
 
-        /* navbar */
+        /* navbar - removed logo text "MG." */
         nav {
             position: sticky;
             top: 0;
@@ -70,16 +69,11 @@
             margin: 0 auto;
             padding: 0 24px;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: center;
             flex-wrap: wrap;
         }
-        .logo {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: #64FFDA;
-            letter-spacing: -0.5px;
-        }
+        /* logo removed as requested, but we keep an empty space if needed, but justify-content flex-end */
         .nav-links {
             display: flex;
             gap: 32px;
@@ -95,11 +89,9 @@
         .nav-links a:hover {
             color: #64FFDA;
         }
-        /* mobile */
         @media (max-width: 768px) {
             .nav-container {
-                flex-direction: column;
-                gap: 12px;
+                justify-content: center;
             }
             .nav-links {
                 gap: 24px;
@@ -108,14 +100,14 @@
             }
         }
 
-        /* hero */
+        /* hero section with larger profile picture and better positioning */
         .hero {
-            padding: 80px 0 60px;
+            padding: 70px 0 50px;
         }
         .hero-grid {
             display: flex;
             align-items: center;
-            gap: 48px;
+            gap: 60px;
             flex-wrap: wrap;
             justify-content: space-between;
         }
@@ -124,15 +116,21 @@
         }
         .hero-image {
             flex-shrink: 0;
+            display: flex;
+            justify-content: center;
         }
         .profile-pic {
-            width: 180px;
-            height: 180px;
+            width: 260px;
+            height: 260px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #64FFDA;
-            box-shadow: 0 0 20px rgba(100,255,218,0.2);
+            border: 4px solid #64FFDA;
+            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.5), 0 0 0 2px rgba(100,255,218,0.2);
             background: #112240;
+            transition: transform 0.3s;
+        }
+        .profile-pic:hover {
+            transform: scale(1.02);
         }
         .hero-content h1 {
             font-size: 3rem;
@@ -188,10 +186,6 @@
             background: rgba(100,255,218,0.1);
             transform: scale(1.02);
         }
-        /* section titles */
-        section {
-            padding: 70px 0 50px;
-        }
         .section-title {
             font-size: 2rem;
             font-weight: 600;
@@ -240,7 +234,7 @@
             color: #64FFDA;
         }
 
-        /* Power BI projects gallery */
+        /* Power BI gallery */
         .project-gallery {
             background: #112240;
             border-radius: 28px;
@@ -303,7 +297,6 @@
             font-weight: 500;
             border-left: 2px solid #64FFDA;
         }
-        /* other projects cards */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -344,7 +337,6 @@
             gap: 6px;
             margin-top: 10px;
         }
-        /* experience */
         .exp-card {
             padding: 24px;
             margin-bottom: 24px;
@@ -370,7 +362,6 @@
         .exp-list li {
             margin: 8px 0;
         }
-        /* certification */
         .cert-card {
             padding: 24px;
             display: flex;
@@ -390,7 +381,6 @@
             text-decoration: none;
             font-weight: 500;
         }
-        /* contact */
         .contact-grid {
             display: flex;
             flex-wrap: wrap;
@@ -420,7 +410,6 @@
             margin-top: 20px;
             font-size: 0.85rem;
         }
-        /* lightbox modal */
         .lightbox {
             display: none;
             position: fixed;
@@ -462,6 +451,7 @@
             .hero-grid {
                 flex-direction: column-reverse;
                 text-align: center;
+                gap: 30px;
             }
             .hero-content h1 {
                 font-size: 2.3rem;
@@ -469,48 +459,66 @@
             .btn-group {
                 justify-content: center;
             }
+            .profile-pic {
+                width: 200px;
+                height: 200px;
+            }
             .section-title {
                 font-size: 1.8rem;
             }
+        }
+        .cv-download-btn {
+            background: #1E3A5F;
+            border: 1px solid #64FFDA;
+            color: #64FFDA;
+        }
+        .cv-download-btn:hover {
+            background: #64FFDA;
+            color: #0A192F;
         }
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-container">
-            <div class="logo">MG Analytics</div>
+            <!-- Logo completely removed as requested (no "MG." text) -->
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#powerbi-projects">Power BI</a></li>
                 <li><a href="#other-projects">Projects</a></li>
                 <li><a href="#experience">Experience</a></li>
+                <li><a href="#certifications">Certifications</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
 
     <main>
-        <!-- Hero Section -->
+        <!-- Hero Section with larger profile picture, repositioned -->
         <section id="home" class="hero">
             <div class="container hero-grid">
                 <div class="hero-content">
                     <h1>Mostafa Mahmoud Gheda</h1>
                     <div class="hero-title">Business Intelligence Developer | Data Analyst</div>
-                    <p class="hero-bio">Detail-oriented BI developer with 1+ year experience in data analysis, Power BI, SQL, and ETL pipelines. I deliver data-driven solutions that empower stakeholders and drive business growth.</p>
+                    <p class="hero-bio">Detail-oriented BI developer with 1+ year of experience transforming raw data into actionable insights. Specialized in Power BI, SQL, Python, and end-to-end ETL pipelines that drive real business growth.</p>
                     <div class="btn-group">
                         <a href="#powerbi-projects" class="btn btn-primary"><i class="fas fa-chart-line"></i> View Work</a>
                         <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i> Contact Me</a>
                         <a href="https://www.linkedin.com/in/mostafa-mahmoud-7176bb226/" target="_blank" class="btn btn-outline"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <!-- CV Download Button -->
+                        <a href="MostafaMahmoud_BI_Developer_CV.pdf" download class="btn btn-outline cv-download-btn"><i class="fas fa-file-pdf"></i> Download CV</a>
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="https://ui-avatars.com/api/?name=Mostafa+Gheda&background=64FFDA&color=0A192F&rounded=true&size=180&bold=true&length=2" alt="Mostafa Profile" class="profile-pic">
+                    <!-- Custom realistic SVG profile: clear head & shoulders, no hidden parts, larger size -->
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Ccircle cx='150' cy='150' r='145' fill='%23112240' stroke='%2364FFDA' stroke-width='4'/%3E%3Ccircle cx='150' cy='120' r='45' fill='%23CCD6F6'/%3E%3Cpath d='M70 210 Q150 260 230 210 Q210 240 150 245 Q90 240 70 210Z' fill='%23CCD6F6'/%3E%3Ccircle cx='125' cy='108' r='5' fill='%230A192F'/%3E%3Ccircle cx='175' cy='108' r='5' fill='%230A192F'/%3E%3Cpath d='M135 130 Q150 142 165 130' stroke='%230A192F' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"
+                         alt="Mostafa Mahmoud Gheda" class="profile-pic">
                 </div>
             </div>
         </section>
 
-        <!-- About + Core Skills (below about) -->
+        <!-- About + Core Skills -->
         <section id="about">
             <div class="container">
                 <h2 class="section-title">About Me</h2>
@@ -522,7 +530,6 @@
                             <span><i class="fas fa-shield-alt"></i> Military status: Exempted</span>
                         </div>
                     </div>
-                    <!-- Core Skills badges section right below about text -->
                     <div>
                         <h3 style="color: #64FFDA; margin-bottom: 16px; font-size: 1.3rem;"><i class="fas fa-code"></i> Core Skills</h3>
                         <div class="skills-container">
@@ -542,7 +549,7 @@
             </div>
         </section>
 
-        <!-- POWER BI PROJECTS SHOWCASE (CRM Dashboard) -->
+        <!-- POWER BI PROJECTS SHOWCASE (CRM Dashboard with images) -->
         <section id="powerbi-projects">
             <div class="container">
                 <h2 class="section-title">📊 Power BI Showcase: CRM Sales Opportunities</h2>
@@ -554,12 +561,11 @@
                         <span class="metric"><i class="fas fa-trophy"></i> Win/Loss by Agent</span>
                         <span class="metric"><i class="fas fa-chart-line"></i> Q4 vs Goal +16.77%</span>
                     </div>
-                    <!-- Gallery grid with 3 images (SVG representations based on capture files) -->
                     <div class="gallery-grid" id="galleryGrid">
-                        <!-- Capture 4 style SVG -->
+                        <!-- Capture 4 style dashboard -->
                         <div class="gallery-card" data-lightbox-img="img1">
                             <div class="gallery-img">
-                                <svg width="100%" height="200" viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg" style="background:#1E2A3A; border-radius: 12px;">
+                                <svg width="100%" height="200" viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg" style="background:#0A192F; border-radius: 12px;">
                                     <rect width="400" height="220" fill="#0A192F" rx="10"/>
                                     <text x="20" y="30" fill="#64FFDA" font-size="12" font-weight="bold">CRM Sales Opportunities</text>
                                     <text x="20" y="55" fill="#CCD6F6" font-size="10">📈 Total Sales: $10.01M | Total OPPs: 8300</text>
@@ -573,7 +579,7 @@
                             </div>
                             <div class="gallery-caption">📌 Q4 Performance & KPIs (Capture 4)</div>
                         </div>
-                        <!-- Capture 5 style: product performance table -->
+                        <!-- Capture 5: product performance table -->
                         <div class="gallery-card" data-lightbox-img="img2">
                             <div class="gallery-img">
                                 <svg width="100%" height="200" viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg" style="background:#0A192F; border-radius: 12px;">
@@ -613,7 +619,7 @@
             </div>
         </section>
 
-        <!-- OTHER PROJECTS SECTION (cards) -->
+        <!-- OTHER PROJECTS SECTION -->
         <section id="other-projects">
             <div class="container">
                 <h2 class="section-title">🚀 Other Data Projects</h2>
@@ -666,7 +672,7 @@
             </div>
         </section>
 
-        <!-- CERTIFICATIONS -->
+        <!-- CERTIFICATIONS with credential link -->
         <section id="certifications">
             <div class="container">
                 <h2 class="section-title">📜 Certifications</h2>
@@ -698,6 +704,10 @@
                         <p><a href="https://www.linkedin.com/in/mostafa-mahmoud-7176bb226/" target="_blank">linkedin.com/in/mostafa-mahmoud</a></p>
                     </div>
                 </div>
+                <!-- Additional CV link at bottom as requested -->
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="MostafaMahmoud_BI_Developer_CV.pdf" download class="btn btn-primary" style="background: #1E3A5F; color:#64FFDA; border:1px solid #64FFDA;"><i class="fas fa-download"></i> Download Full CV (PDF)</a>
+                </div>
             </div>
         </section>
         <footer class="footer">
@@ -714,7 +724,6 @@
     </div>
 
     <script>
-        // Lightbox for gallery images (SVG elements)
         const galleryItems = document.querySelectorAll('.gallery-card');
         const modal = document.getElementById('lightboxModal');
         const lightboxContent = document.getElementById('lightboxContent');
@@ -722,7 +731,6 @@
 
         function openLightbox(svgClone) {
             lightboxContent.innerHTML = '';
-            // Clone the SVG or image content
             const cloneElement = svgClone.cloneNode(true);
             cloneElement.style.maxWidth = '100%';
             cloneElement.style.maxHeight = '70vh';
@@ -734,10 +742,8 @@
             card.addEventListener('click', (e) => {
                 const svgContainer = card.querySelector('.gallery-img svg');
                 if (svgContainer) {
-                    const deepClone = svgContainer.cloneNode(true);
-                    openLightbox(deepClone);
+                    openLightbox(svgContainer.cloneNode(true));
                 } else {
-                    // fallback
                     const placeholder = document.createElement('div');
                     placeholder.innerText = 'Dashboard Preview';
                     openLightbox(placeholder);
@@ -752,8 +758,7 @@
             if (e.target === modal) modal.classList.remove('active');
         });
 
-        // Smooth scroll for navigation
-        document.querySelectorAll('.nav-links a, .btn-primary, .btn-outline[href^="#"]').forEach(anchor => {
+        document.querySelectorAll('.nav-links a, .btn-primary[href^="#"], .btn-outline[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
                 if (href && href.startsWith('#')) {
