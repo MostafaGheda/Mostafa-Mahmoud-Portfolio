@@ -1,498 +1,19 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Mostafa Gheda | BI Developer & Data Analyst</title>
+    <!-- External CSS & Favicon -->
+    <link rel="stylesheet" href="style.css">
     <!-- Google Fonts + Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0A192F;
-            color: #CCD6F6;
-            line-height: 1.5;
-            scroll-behavior: smooth;
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #112240;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #64FFDA;
-            border-radius: 6px;
-        }
-
-        /* glassmorphism & cards */
-        .glass-card, .project-card, .exp-card, .cert-card, .skill-badge, .contact-card {
-            background: rgba(17, 34, 64, 0.75);
-            backdrop-filter: blur(8px);
-            border: 1px solid #1E3A5F;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .glass-card:hover, .project-card:hover, .exp-card:hover {
-            transform: translateY(-5px);
-            border-color: #64FFDA;
-            box-shadow: 0 15px 30px -12px rgba(0,0,0,0.4);
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* navbar - no logo */
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(10, 25, 47, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid #1E3A5F;
-            padding: 16px 0;
-        }
-        .nav-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 24px;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-        }
-        .nav-links a {
-            color: #CCD6F6;
-            text-decoration: none;
-            font-weight: 500;
-            transition: 0.2s;
-            font-size: 1rem;
-        }
-        .nav-links a:hover {
-            color: #64FFDA;
-        }
-        @media (max-width: 768px) {
-            .nav-container {
-                justify-content: center;
-            }
-            .nav-links {
-                gap: 24px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-        }
-
-        /* hero section */
-        .hero {
-            padding: 70px 0 50px;
-        }
-        .hero-grid {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-        .hero-content {
-            flex: 1;
-        }
-        .hero-image {
-            flex-shrink: 0;
-            display: flex;
-            justify-content: center;
-        }
-        .profile-pic {
-            width: 260px;
-            height: 260px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #64FFDA;
-            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.5), 0 0 0 2px rgba(100,255,218,0.2);
-            background: #112240;
-            transition: transform 0.3s;
-        }
-        .profile-pic:hover {
-            transform: scale(1.02);
-        }
-        .hero-content h1 {
-            font-size: 3rem;
-            font-weight: 600;
-            color: white;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.5rem;
-        }
-        .hero-title {
-            font-size: 1.4rem;
-            font-weight: 500;
-            color: #64FFDA;
-            margin-bottom: 1rem;
-        }
-        .hero-bio {
-            font-size: 1.05rem;
-            max-width: 550px;
-            margin-bottom: 2rem;
-            color: #CCD6F6;
-        }
-        .btn-group {
-            display: flex;
-            gap: 18px;
-            flex-wrap: wrap;
-        }
-        .btn {
-            padding: 12px 28px;
-            border-radius: 40px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.95rem;
-        }
-        .btn-primary {
-            background: #64FFDA;
-            color: #0A192F;
-            border: none;
-        }
-        .btn-primary:hover {
-            background: #4cd8b6;
-            transform: scale(1.02);
-            box-shadow: 0 5px 12px rgba(100,255,218,0.3);
-        }
-        .btn-outline {
-            border: 1px solid #64FFDA;
-            color: #64FFDA;
-            background: transparent;
-        }
-        .btn-outline:hover {
-            background: rgba(100,255,218,0.1);
-            transform: scale(1.02);
-        }
-        .section-title {
-            font-size: 2rem;
-            font-weight: 600;
-            color: white;
-            margin-bottom: 40px;
-            border-left: 4px solid #64FFDA;
-            padding-left: 20px;
-        }
-        /* about + skills */
-        .about-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 28px;
-        }
-        .about-text {
-            font-size: 1.05rem;
-            line-height: 1.6;
-        }
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 12px;
-        }
-        .skill-badge {
-            padding: 8px 18px;
-            font-weight: 500;
-            background: #112240;
-            backdrop-filter: blur(4px);
-            font-size: 0.85rem;
-            border-radius: 40px;
-            color: #CCD6F6;
-            border-color: #1E3A5F;
-        }
-        .info-row {
-            display: flex;
-            gap: 24px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-            color: #64FFDA;
-            font-weight: 500;
-        }
-        .info-row span i {
-            margin-right: 8px;
-            width: 24px;
-            color: #64FFDA;
-        }
-
-        /* Power BI gallery */
-        .project-gallery {
-            background: #112240;
-            border-radius: 28px;
-            padding: 24px;
-            margin-bottom: 20px;
-        }
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            margin-top: 28px;
-        }
-        .gallery-card {
-            background: rgba(10, 25, 47, 0.6);
-            border-radius: 20px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: 1px solid #1E3A5F;
-        }
-        .gallery-card:hover {
-            transform: scale(1.02);
-            border-color: #64FFDA;
-        }
-        .gallery-img {
-            width: 100%;
-            background: #0A192F;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 12px;
-            min-height: 220px;
-        }
-        .gallery-img img {
-            width: 100%;
-            height: auto;
-            max-height: 220px;
-            object-fit: contain;
-            border-radius: 12px;
-            transition: 0.2s;
-        }
-        .gallery-caption {
-            padding: 12px;
-            text-align: center;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: #CCD6F6;
-            border-top: 1px solid #1E3A5F;
-        }
-        .project-metrics {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin: 18px 0 10px;
-        }
-        .metric {
-            background: #0A192F;
-            padding: 6px 14px;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            border-left: 2px solid #64FFDA;
-        }
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 28px;
-            margin-top: 20px;
-        }
-        .project-card {
-            padding: 24px;
-        }
-        .project-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 12px;
-            color: white;
-        }
-        .project-card p {
-            margin: 12px 0;
-            font-size: 0.95rem;
-        }
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 16px 0;
-        }
-        .tech-tag {
-            background: #1E3A5F;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 500;
-        }
-        .card-link {
-            color: #64FFDA;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 10px;
-        }
-        .exp-card {
-            padding: 24px;
-            margin-bottom: 24px;
-        }
-        .exp-header {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-bottom: 12px;
-        }
-        .exp-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: white;
-        }
-        .exp-date {
-            color: #64FFDA;
-        }
-        .exp-list {
-            padding-left: 20px;
-            margin-top: 12px;
-        }
-        .exp-list li {
-            margin: 8px 0;
-        }
-        .cert-card {
-            padding: 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .cert-info h3 {
-            color: white;
-            margin-bottom: 6px;
-        }
-        .cert-link {
-            background: #1E3A5F;
-            padding: 8px 20px;
-            border-radius: 40px;
-            color: #64FFDA;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        .contact-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .contact-card {
-            padding: 28px;
-            flex: 1;
-            text-align: center;
-        }
-        .contact-card i {
-            font-size: 2rem;
-            color: #64FFDA;
-            margin-bottom: 12px;
-        }
-        .contact-card a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        .footer {
-            text-align: center;
-            padding: 30px 0;
-            border-top: 1px solid #1E3A5F;
-            margin-top: 20px;
-            font-size: 0.85rem;
-        }
-        /* lightbox */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(10px);
-        }
-        .lightbox.active {
-            display: flex;
-        }
-        .lightbox-content {
-            max-width: 85vw;
-            max-height: 85vh;
-            background: #112240;
-            border-radius: 28px;
-            padding: 16px;
-            border: 1px solid #64FFDA;
-        }
-        .lightbox-content img {
-            max-width: 100%;
-            max-height: 70vh;
-            border-radius: 16px;
-            display: block;
-            margin: 0 auto;
-        }
-        .close-lightbox {
-            position: absolute;
-            top: 25px;
-            right: 35px;
-            font-size: 2.5rem;
-            color: #64FFDA;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .close-lightbox:hover {
-            color: white;
-        }
-        @media (max-width: 768px) {
-            .hero-grid {
-                flex-direction: column-reverse;
-                text-align: center;
-                gap: 30px;
-            }
-            .hero-content h1 {
-                font-size: 2.3rem;
-            }
-            .btn-group {
-                justify-content: center;
-            }
-            .profile-pic {
-                width: 200px;
-                height: 200px;
-            }
-            .section-title {
-                font-size: 1.8rem;
-            }
-        }
-        .cv-download-btn {
-            background: #1E3A5F;
-            border: 1px solid #64FFDA;
-            color: #64FFDA;
-        }
-        .cv-download-btn:hover {
-            background: #64FFDA;
-            color: #0A192F;
-        }
-        /* ensure images look good */
-        .gallery-img img {
-            background: #f0f4fa;
-        }
-    </style>
 </head>
 <body>
     <nav>
         <div class="nav-container">
-            <!-- Logo removed completely as requested -->
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -506,7 +27,7 @@
     </nav>
 
     <main>
-        <!-- Hero Section with larger profile picture -->
+        <!-- Hero Section -->
         <section id="home" class="hero">
             <div class="container hero-grid">
                 <div class="hero-content">
@@ -517,12 +38,10 @@
                         <a href="#powerbi-projects" class="btn btn-primary"><i class="fas fa-chart-line"></i> View Work</a>
                         <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i> Contact Me</a>
                         <a href="https://www.linkedin.com/in/mostafa-mahmoud-7176bb226/" target="_blank" class="btn btn-outline"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                        <!-- CV Download Button (OneDrive link, but also direct fallback) -->
                         <a href="https://1drv.ms/b/c/34e5bfc93d75b9eb/IQCeQqcz1U5tSah4k1iCvdQnAY8fJL3f98myfy_cfqAbYe0?e=lNdgTh" target="_blank" class="btn btn-outline cv-download-btn"><i class="fas fa-file-pdf"></i> Download CV</a>
                     </div>
                 </div>
                 <div class="hero-image">
-                    <!-- Profile picture using provided OneDrive link (may require sharing permissions, fallback avatar included) -->
                     <img src="https://1drv.ms/i/c/34e5bfc93d75b9eb/IQBGH_XIcT4yQYYe6Sq2KnZRAVs-qnfhhbt5sthW2rMdR3Q?e=2uDEax" 
                          alt="Mostafa Mahmoud Gheda" 
                          class="profile-pic"
@@ -562,7 +81,7 @@
             </div>
         </section>
 
-        <!-- POWER BI PROJECTS SHOWCASE (real images) -->
+        <!-- Power BI Projects Gallery -->
         <section id="powerbi-projects">
             <div class="container">
                 <h2 class="section-title">📊 Power BI Showcase: CRM Sales Opportunities</h2>
@@ -575,21 +94,18 @@
                         <span class="metric"><i class="fas fa-chart-line"></i> Q4 vs Goal +16.77%</span>
                     </div>
                     <div class="gallery-grid" id="galleryGrid">
-                        <!-- Capture 4.PNG -->
                         <div class="gallery-card" data-img="Capture 4.PNG">
                             <div class="gallery-img">
                                 <img src="Capture 4.PNG" alt="CRM Dashboard Q4 Performance" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'220\' viewBox=\'0 0 400 220\'%3E%3Crect width=\'400\' height=\'220\' fill=\'%231E3A5F\'/%3E%3Ctext x=\'20\' y=\'30\' fill=\'%2364FFDA\' font-size=\'12\'%3ECRM Sales Opportunities%3C/text%3E%3Ctext x=\'20\' y=\'55\' fill=\'%23CCD6F6\' font-size=\'10\'%3ETotal Sales: $10.01M%3C/text%3E%3C/svg%3E';">
                             </div>
                             <div class="gallery-caption">📌 Q4 Performance & KPIs (Capture 4)</div>
                         </div>
-                        <!-- Capture 5.PNG -->
                         <div class="gallery-card" data-img="Capture 5.PNG">
                             <div class="gallery-img">
                                 <img src="Capture 5.PNG" alt="Product Performance Breakdown" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'220\' viewBox=\'0 0 400 220\'%3E%3Crect width=\'400\' height=\'220\' fill=\'%231E3A5F\'/%3E%3Ctext x=\'20\' y=\'30\' fill=\'%2364FFDA\'%3EProduct Performance%3C/text%3E%3C/svg%3E';">
                             </div>
                             <div class="gallery-caption">📦 Product & Sales Breakdown (Capture 5)</div>
                         </div>
-                        <!-- Capture 6.PNG -->
                         <div class="gallery-card" data-img="Capture 6.PNG">
                             <div class="gallery-img">
                                 <img src="Capture 6.PNG" alt="Agents Win Rates Summary" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'220\' viewBox=\'0 0 400 220\'%3E%3Crect width=\'400\' height=\'220\' fill=\'%231E3A5F\'/%3E%3Ctext x=\'20\' y=\'30\' fill=\'%2364FFDA\'%3EAgents Performance%3C/text%3E%3C/svg%3E';">
@@ -603,7 +119,7 @@
             </div>
         </section>
 
-        <!-- OTHER PROJECTS SECTION -->
+        <!-- Other Projects -->
         <section id="other-projects">
             <div class="container">
                 <h2 class="section-title">🚀 Other Data Projects</h2>
@@ -634,7 +150,7 @@
             </div>
         </section>
 
-        <!-- WORK EXPERIENCE -->
+        <!-- Work Experience -->
         <section id="experience">
             <div class="container">
                 <h2 class="section-title">💼 Work Experience</h2>
@@ -653,7 +169,7 @@
             </div>
         </section>
 
-        <!-- CERTIFICATIONS with credential link -->
+        <!-- Certifications -->
         <section id="certifications">
             <div class="container">
                 <h2 class="section-title">📜 Certifications</h2>
@@ -667,7 +183,7 @@
             </div>
         </section>
 
-        <!-- CONTACT SECTION + bottom CV display -->
+        <!-- Contact + Bottom CV -->
         <section id="contact">
             <div class="container">
                 <h2 class="section-title">📬 Let's Connect</h2>
@@ -685,10 +201,8 @@
                         <p><a href="https://www.linkedin.com/in/mostafa-mahmoud-7176bb226/" target="_blank">linkedin.com/in/mostafa-mahmoud</a></p>
                     </div>
                 </div>
-                <!-- Additional CV download button at bottom -->
                 <div style="text-align: center; margin-top: 50px;">
                     <a href="https://1drv.ms/b/c/34e5bfc93d75b9eb/IQCeQqcz1U5tSah4k1iCvdQnAY8fJL3f98myfy_cfqAbYe0?e=lNdgTh" target="_blank" class="btn btn-primary" style="background: #1E3A5F; color:#64FFDA; border:1px solid #64FFDA;"><i class="fas fa-download"></i> Download Full CV (PDF)</a>
-                    <p style="font-size: 0.75rem; margin-top: 12px; color:#8892B0;">📄 Click to access my detailed resume</p>
                 </div>
             </div>
         </section>
@@ -699,65 +213,13 @@
         </footer>
     </main>
 
-    <!-- Lightbox Modal for images -->
+    <!-- Lightbox Modal -->
     <div id="lightboxModal" class="lightbox">
         <span class="close-lightbox">&times;</span>
         <div class="lightbox-content" id="lightboxContent"></div>
     </div>
 
-    <script>
-        // Lightbox functionality for gallery images
-        const galleryCards = document.querySelectorAll('.gallery-card');
-        const modal = document.getElementById('lightboxModal');
-        const lightboxContent = document.getElementById('lightboxContent');
-        const closeBtn = document.querySelector('.close-lightbox');
-
-        function openLightbox(imgElement) {
-            lightboxContent.innerHTML = '';
-            const clonedImg = imgElement.cloneNode(true);
-            clonedImg.style.maxWidth = '100%';
-            clonedImg.style.maxHeight = '70vh';
-            clonedImg.style.borderRadius = '12px';
-            lightboxContent.appendChild(clonedImg);
-            modal.classList.add('active');
-        }
-
-        galleryCards.forEach(card => {
-            card.addEventListener('click', () => {
-                const img = card.querySelector('.gallery-img img');
-                if (img && img.src && !img.src.includes('data:image/svg')) {
-                    openLightbox(img);
-                } else if (img) {
-                    // fallback for broken images: show a message
-                    const placeholder = document.createElement('div');
-                    placeholder.style.color = '#64FFDA';
-                    placeholder.style.padding = '20px';
-                    placeholder.innerText = 'Preview not available. Please ensure image file exists.';
-                    lightboxContent.innerHTML = '';
-                    lightboxContent.appendChild(placeholder);
-                    modal.classList.add('active');
-                }
-            });
-        });
-
-        closeBtn.addEventListener('click', () => {
-            modal.classList.remove('active');
-        });
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) modal.classList.remove('active');
-        });
-
-        // Smooth scroll for navigation
-        document.querySelectorAll('.nav-links a, .btn-primary[href^="#"], .btn-outline[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href && href.startsWith('#')) {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-    </script>
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
